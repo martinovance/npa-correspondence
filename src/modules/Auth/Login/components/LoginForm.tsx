@@ -1,7 +1,11 @@
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
 
-function Form() {
+interface LoginFormProps {
+  openModal: () => void
+}
+
+function LoginForm({ openModal }: LoginFormProps) {
   return (
     <Box
       sx={{
@@ -80,6 +84,7 @@ function Form() {
 
       <Button
         fullWidth
+        onClick={openModal}
         sx={{
           height: "45px",
           borderRadius: "16px",
@@ -104,4 +109,4 @@ function Form() {
   )
 }
 
-export default Form
+export default LoginForm

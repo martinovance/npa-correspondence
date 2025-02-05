@@ -1,8 +1,22 @@
 import { Box, Typography } from "@mui/material"
 import { ReactComponent as NPALogo } from "@/assets/NPALogo.svg"
-import Form from "./components/Form"
+import LoginForm from "./components/LoginForm"
+import SuccessModal from "./Modal/SuccessModal"
+import useModal from "@/hooks/useModal"
 
 function Login() {
+  const [modal, setModal] = useModal()
+
+  const openModal = () => {
+    setModal((prev) => ({
+      ...prev,
+      modal,
+      modalName: "successModal",
+      message: "Login Successful!",
+      redirect: "Redirecting in 4 seconds...",
+    }))
+  }
+
   return (
     <Box
       sx={{
@@ -49,8 +63,10 @@ function Login() {
         <Typography sx={{ fontWeight: "700", fontSize: "36px", color: "#fff" }}>
           Admin Login
         </Typography>
-        <Form />
+        <LoginForm openModal={openModal} />
       </Box>
+
+      <SuccessModal />
     </Box>
   )
 }

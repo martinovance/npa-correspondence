@@ -12,7 +12,15 @@ function Routes() {
           <BrowserRoutes>
             {BaseRoutes.map(({ path, Layout, component: Component }) =>
               Layout ? (
-                <Route key={path} path={path} element={<Component />} />
+                <Route
+                  key={path}
+                  path={path}
+                  element={
+                    <Layout>
+                      <Component />{" "}
+                    </Layout>
+                  }
+                />
               ) : (
                 <Route key={path} path={path} element={<Component />} />
               )

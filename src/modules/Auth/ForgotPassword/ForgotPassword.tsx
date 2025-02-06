@@ -107,16 +107,30 @@ function ForgotPassword() {
             gap: 3,
           }}
         >
-          <Box>
+          <Box
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  border: "none",
+                },
+                "&:hover fieldset": {
+                  border: "none",
+                },
+                "&.Mui-focused fieldset": {
+                  border: "none",
+                },
+              },
+            }}
+          >
             <TextField
               name="email"
               placeholder="Enter email..."
               fullWidth
+              autoComplete="off"
               InputProps={{
                 style: {
                   height: "48px",
                   borderRadius: "16px",
-                  border: "1px solid #fff",
                   backgroundColor: "#fff",
                 },
               }}

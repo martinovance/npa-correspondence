@@ -11,3 +11,10 @@ export const AuthPaths = {
   NEW_USER: `login`,
   VERIFY_ACCOUNT: `verify-account`,
 }
+
+export const AdminPaths = {
+  ADMIN_DASHBOARD: `/admin/dashboard`,
+  ADMIN_SEND_MEMO: `/admin/send-memo`,
+  ADMIN_MANAGE_STAFF: `/admin/manage-staff`,
+  ADMIN_MANAGE_COMPANIES: `/admin/manage-companies`,
+}

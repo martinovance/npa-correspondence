@@ -36,8 +36,8 @@ function SuccessModal() {
             transform: "translate(-50%, -50%)",
             top: "1%",
             left: "50%",
-            width: "50px",
-            height: "50px",
+            width: "80px",
+            height: "80px",
             borderRadius: "50%",
             display: "flex",
             justifyContent: "center",
@@ -47,23 +47,23 @@ function SuccessModal() {
         >
           <Box
             sx={{
-              width: "35px",
-              height: "35px",
+              width: "55px",
+              height: "55px",
               borderRadius: "50%",
               placeContent: "center",
               backgroundColor: "#01A85A",
             }}
           >
-            <Check sx={{ color: "#fff", width: 15, height: 15 }} />
+            <Check sx={{ color: "#fff", width: 20, height: 20 }} />
           </Box>
         </Card>
         <Typography variant="h5" sx={{ pt: 3 }}>
           {state.message}
         </Typography>
         <Typography variant="subtitle1">{state.caption}</Typography>
-        <Typography variant="subtitle1">{state.redirect}</Typography>
         <Box
           sx={{
+            mt: 2,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",

@@ -13,6 +13,17 @@ function LoginForm({ openModal }: LoginFormProps) {
         flexDirection: "column",
         width: "480px",
         gap: 3,
+        "& .MuiOutlinedInput-root": {
+          "& fieldset": {
+            border: "none",
+          },
+          "&:hover fieldset": {
+            border: "none",
+          },
+          "&.Mui-focused fieldset": {
+            border: "none",
+          },
+        },
       }}
     >
       <Box>
@@ -30,6 +41,7 @@ function LoginForm({ openModal }: LoginFormProps) {
           name="email"
           placeholder="Enter email..."
           fullWidth
+          autoComplete="off"
           InputProps={{
             style: {
               height: "48px",
@@ -56,6 +68,7 @@ function LoginForm({ openModal }: LoginFormProps) {
           placeholder="Enter password..."
           fullWidth
           type="password"
+          autoComplete="off"
           InputProps={{
             style: {
               height: "48px",

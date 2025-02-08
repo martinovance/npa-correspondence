@@ -66,7 +66,7 @@ const Appbar = ({ pathname }: { pathname: string }) => {
                   }
                 />
               </Grid>
-              <Grid item mt={1}>
+              <Grid item mt={1.5}>
                 <Badge
                   variant="dot"
                   overlap="circular"

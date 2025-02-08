@@ -14,7 +14,7 @@ export default function ContentWrapper({
       {hideWrapper ? (
         children
       ) : (
-        <Grid item sm={10}>
+        <Grid item sm={10} mt={2}>
           <Box component="main">{children}</Box>
         </Grid>
       )}

@@ -16,11 +16,11 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
   return (
     <Box sx={{ position: "static", width: "20%" }}>
       <Box
-        // component="aside"
+        component="aside"
         sx={{
           display: "flex",
           flexDirection: "column",
-          height: "100vh",
+          height: "90%",
           background: "#fff",
           padding: "2.5rem 16px",
           justifyContent: "flex-start",

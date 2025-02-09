@@ -72,8 +72,9 @@ export default function Table({ results, columns, totalResults }: TableProps) {
                 {columns?.map((column) => (
                   <TableCell
                     key={column?.label}
-                    align="left"
+                    align={column?.label === "Actions" ? "center" : "left"}
                     sx={{
+                      color: "#fff",
                       background: "#01A85A",
                       borderColor: "#01A85A",
                       fontWeight: 600,
@@ -126,7 +127,7 @@ export default function Table({ results, columns, totalResults }: TableProps) {
                 <TableCell>{row.dateSent}</TableCell>
                 <TableCell>{row.serialNo}</TableCell>
                 <TableCell>{row.status}</TableCell>
-                {columns.flatMap((column) => column.label === "action") && (
+                {columns.flatMap((column) => column.label === "Actions") && (
                   <TableCell>
                     <IconButton>
                       <Inbox />

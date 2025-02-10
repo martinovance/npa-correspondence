@@ -6,6 +6,7 @@ import { ReactComponent as Staff2 } from "@/assets/Staff2.svg"
 
 import { ReactComponent as City1 } from "@/assets/City1.svg"
 import { ReactComponent as City2 } from "@/assets/City2.svg"
+import { column, TableCompProp } from "@/types/tableTypes"
 
 export const CARDDATA = [
   {
@@ -31,10 +32,10 @@ export const CARDDATA = [
   },
 ]
 
-export const adminColumns = [
+export const adminColumns: column<TableCompProp>[] = [
   {
     label: "Ref. No.",
-    key: "data",
+    key: "refNo",
     sort: true,
     minWidth: 100,
   },
@@ -55,17 +56,17 @@ export const adminColumns = [
   },
   {
     label: "Date of letter",
-    key: "dol",
+    key: "dateOfLetter",
     minWidth: 150,
   },
   {
     label: "Date sent",
-    key: "sent",
+    key: "dateSent",
     minWidth: 150,
   },
   {
     label: "Serial No.",
-    key: "serial",
+    key: "serialNo",
     minWidth: 150,
   },
   {

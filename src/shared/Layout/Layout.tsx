@@ -24,7 +24,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   return (
     <>
-      <Box sx={{ display: "flex", margin: 3 }}>
+      <Box
+        sx={{
+          display: "flex",
+          margin: 3,
+          pb: pathname !== "/admin/dashboard" ? 8 : 0,
+        }}
+      >
         <Sidebar pathname={pathname} />
         <Box sx={{ flexGrow: 1, ml: 3, height: "100%" }}>
           <Appbar pathname={pathname} />

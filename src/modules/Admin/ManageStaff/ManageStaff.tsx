@@ -1,9 +1,9 @@
-import { ForwardToInbox } from "@mui/icons-material"
+import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt"
 import { Box, Button } from "@mui/material"
-import DisplayCard from "./components/DisplayCard"
-import Chart from "./components/Chart"
+import React from "react"
+import TableLayout from "../Table/StaffTable"
 
-function Dashboard() {
+const ManageStaff = () => {
   return (
     <Box
       sx={{
@@ -22,13 +22,12 @@ function Dashboard() {
           textTransform: "capitalize",
         }}
       >
-        <ForwardToInbox sx={{ mr: 1 }} />
-        Send memo
+        <PersonAddAltIcon sx={{ mr: 1 }} />
+        Add Staff
       </Button>
-      <DisplayCard />
-      <Chart />
+      <TableLayout />
     </Box>
   )
 }
 
-export default Dashboard
+export default ManageStaff

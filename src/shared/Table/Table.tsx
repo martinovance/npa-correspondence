@@ -10,35 +10,38 @@ import TableBody from "@mui/material/TableBody"
 import TableCell from "@mui/material/TableCell"
 import TableHead from "@mui/material/TableHead"
 import TableRow from "@mui/material/TableRow"
-import { adminColumn, TableCompProp } from "@/types/tableTypes"
+import { column } from "@/types/tableTypes"
 
 import { ReactComponent as Inbox } from "@/assets/Inbox.svg"
 import { ReactComponent as Clock } from "@/assets/Clock.svg"
 import { ReactComponent as Delete } from "@/assets/Delete.svg"
 
-interface TableProps {
-  results: TableCompProp[]
-  columns: adminColumn[]
+interface TableProps<T> {
+  results: T[]
+  columns: column<T>[]
   totalResults: number
-}
-
-export default function Table({ results, columns, totalResults }: TableProps) {
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(5)
-
-  const handleChangePage = (
+  handleChangePage: (
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
-  ) => {
-    setPage(newPage)
-  }
+  ) => void
+  handleChangeRowsPerPage: (event: React.ChangeEvent<HTMLInputElement>) => void
+  page: number
+  rowsPerPage: number
+}
 
-  const handleChangeRowsPerPage = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    setRowsPerPage(parseInt(event.target.value, 10))
-    setPage(0)
-  }
+export default function Table<T>({
+  results,
+  columns,
+  totalResults,
+  handleChangePage,
+  handleChangeRowsPerPage,
+  page,
+  rowsPerPage,
+}: TableProps<T>) {
+  const paginatedResults = results.slice(
+    page * rowsPerPage,
+    page * rowsPerPage + rowsPerPage
+  )
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -87,9 +90,9 @@ export default function Table({ results, columns, totalResults }: TableProps) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {results?.map((row) => (
+            {paginatedResults?.map((row, index) => (
               <TableRow
-                key={row.refNo}
+                key={index}
                 sx={{
                   cursor: "pointer",
                   background: "#FAF9F8",
@@ -98,48 +101,47 @@ export default function Table({ results, columns, totalResults }: TableProps) {
                   },
                 }}
               >
-                <TableCell
-                  key={row.serialNo}
-                  align="right"
-                  // onClick={() => handleRowClick(row)}
-                  sx={{
-                    color: "#272833",
-                    fontWeight: 400,
-                    // minWidth: "unset",
-                    "&:nth-child(1)": {
-                      position: "sticky",
-                      left: 0,
-                      boxShadow:
-                        "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15)",
-                      background: "#FFF",
-                      "&:hover": {
-                        background: "#FAF9F8",
+                {columns.map((column) => (
+                  <TableCell
+                    key={column.key as string}
+                    align="left"
+                    // onClick={() => handleRowClick(row)}
+                    sx={{
+                      color: "#272833",
+                      fontWeight: 400,
+                      // minWidth: "unset",
+                      "&:nth-child(1)": {
+                        position: "sticky",
+                        left: 0,
+                        boxShadow:
+                          "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15)",
+                        background: "#FFF",
+                        "&:hover": {
+                          background: "#FAF9F8",
+                        },
                       },
-                    },
-                  }}
-                >
-                  {row.refNo}
-                </TableCell>
-                <TableCell>{row.subject}</TableCell>
-                <TableCell>{row.sender}</TableCell>
-                <TableCell>{row.receiver}</TableCell>
-                <TableCell>{row.dateOfLetter}</TableCell>
-                <TableCell>{row.dateSent}</TableCell>
-                <TableCell>{row.serialNo}</TableCell>
-                <TableCell>{row.status}</TableCell>
-                {columns.flatMap((column) => column.label === "Actions") && (
-                  <TableCell>
-                    <IconButton>
-                      <Inbox />
-                    </IconButton>
-                    <IconButton>
-                      <Clock />
-                    </IconButton>
-                    <IconButton>
-                      <Delete />
-                    </IconButton>
+                    }}
+                  >
+                    {column.key === "actions" ? (
+                      <>
+                        <IconButton>
+                          <Inbox />
+                        </IconButton>
+                        <IconButton>
+                          <Clock />
+                        </IconButton>
+                        <IconButton>
+                          <Delete />
+                        </IconButton>
+                      </>
+                    ) : typeof row[column.key as keyof T] === "string" ||
+                      typeof row[column.key as keyof T] === "number" ? (
+                      (row[column.key as keyof T] as string | number)
+                    ) : (
+                      "—"
+                    )}
                   </TableCell>
-                )}
+                ))}
               </TableRow>
             ))}
           </TableBody>

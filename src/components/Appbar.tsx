@@ -56,7 +56,7 @@ const Appbar = ({ pathname }: { pathname: string }) => {
                     borderRadius: "19.2px",
                     bgcolor: "#E9E9E9",
                     height: "35px",
-                    pl: 2,
+                    px: 2,
                     opacity: "60%",
                   }}
                   startAdornment={

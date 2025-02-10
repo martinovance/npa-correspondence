@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
-import { adminColumns, result } from "@/constant/dashboardData"
+import { EmployeeData, ManageStaffColumns } from "@/constant/staffData"
 import Table from "@/shared/Table/Table"
-import { TableCompProp } from "@/types/tableTypes"
+import { Employee } from "@/types/tableTypes"
 import { useState } from "react"
 
 function TableLayout() {
@@ -20,41 +20,35 @@ function TableLayout() {
   }
 
   function createData({
-    refNo,
-    subject,
-    sender,
-    receiver,
-    dateOfLetter,
-    dateSent,
-    serialNo,
-    status,
-  }: TableCompProp) {
+    personalNo,
+    name,
+    email,
+    department,
+    subDepartment,
+  }: Employee) {
     return {
-      refNo,
-      subject,
-      sender,
-      receiver,
-      dateOfLetter,
-      dateSent,
-      serialNo,
-      status,
+      personalNo,
+      name,
+      email,
+      department,
+      subDepartment,
     }
   }
 
-  const list: TableCompProp[] = result.map((row) => createData(row)) || []
+  const list: Employee[] = EmployeeData.map((row) => createData(row)) || []
 
   return (
-    <Table<TableCompProp>
+    <Table<Employee>
       // emptyIconTitle="No Executive"
       // emptyIconMessage="You currently do not have any Executive yet"
       results={list || []}
-      columns={adminColumns}
+      columns={ManageStaffColumns}
       handleChangePage={handleChangePage}
       handleChangeRowsPerPage={handleChangeRowsPerPage}
       page={page}
       rowsPerPage={rowsPerPage}
       // handleRowClick={(row) => handleOpenDrawer(row)}
-      totalResults={result.length}
+      totalResults={EmployeeData.length}
     />
   )
 }

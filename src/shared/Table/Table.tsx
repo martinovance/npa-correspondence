@@ -1,6 +1,7 @@
 import * as React from "react"
 import {
   Box,
+  Chip,
   IconButton,
   Table as MuiTable,
   TableContainer,
@@ -105,21 +106,10 @@ export default function Table<T>({
                   <TableCell
                     key={column.key as string}
                     align="left"
-                    // onClick={() => handleRowClick(row)}
                     sx={{
                       color: "#272833",
                       fontWeight: 400,
-                      // minWidth: "unset",
-                      "&:nth-child(1)": {
-                        position: "sticky",
-                        left: 0,
-                        boxShadow:
-                          "0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15)",
-                        background: "#FFF",
-                        "&:hover": {
-                          background: "#FAF9F8",
-                        },
-                      },
+                      width: column.key === "actions" ? "110px" : null,
                     }}
                   >
                     {column.key === "actions" ? (
@@ -134,6 +124,21 @@ export default function Table<T>({
                           <Delete />
                         </IconButton>
                       </>
+                    ) : column.key === "status" ? (
+                      <Chip
+                        label={row[column.key as keyof T] as string}
+                        sx={{
+                          backgroundColor:
+                            row[column.key as keyof T] === "Active"
+                              ? "#01A85A33"
+                              : "#F02E3933",
+                          color:
+                            row[column.key as keyof T] === "Active"
+                              ? "#01A85A"
+                              : "#F02E39",
+                          minWidth: "84px",
+                        }}
+                      />
                     ) : typeof row[column.key as keyof T] === "string" ||
                       typeof row[column.key as keyof T] === "number" ? (
                       (row[column.key as keyof T] as string | number)

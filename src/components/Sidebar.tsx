@@ -5,26 +5,42 @@ import { NavLink } from "react-router-dom"
 
 import { ReactComponent as NPALogo2 } from "@/assets/NPALogo2.svg"
 import { ReactComponent as Logout } from "@/assets/Logout.svg"
+import { useState } from "react"
 
 const role = "admin"
 
 const Sidebar = ({ pathname }: { pathname: string }) => {
+  const [collapsed, setCollapsed] = useState<boolean>(() => {
+    return localStorage.getItem("sidebarCollapsed") === "true"
+  })
+
+  const handleNavShrink = (path: string) => {
+    if (path === "/admin/manage-companies") {
+      setCollapsed(true)
+      localStorage.setItem("sidebarCollapsed", "true")
+    } else {
+      setCollapsed(false)
+      localStorage.setItem("sidebarCollapsed", "false")
+    }
+  }
+
   const SIDENAVS = {
     admin: ADMIN_SIDE_NAVS,
   }
 
   return (
-    <Box sx={{ position: "static", minWidth: "20%" }}>
+    <Box sx={{ position: "static", minWidth: collapsed ? "5%" : "20%" }}>
       <Box
         component="aside"
         sx={{
           display: "flex",
           flexDirection: "column",
-          height: "90%",
+          height: "95%",
           background: "#fff",
-          padding: "2.5rem 16px",
+          padding: collapsed ? "1rem" : "2.5rem 16px 0 16px",
           justifyContent: "flex-start",
           borderRadius: "24px",
+          transition: "all 0.3s ease-in-out",
           "& img": {
             marginRight: 1,
           },
@@ -46,27 +62,29 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
         <Box
           sx={{
             display: "flex",
-            justifyContent: "flex-start",
+            justifyContent: collapsed ? "center" : "flex-start",
             alignItems: "center",
             gap: "8px",
             placeContent: "center",
           }}
         >
           <NPALogo2 />
-          <Typography
-            sx={{
-              fontWeight: "700",
-              fontSize: "12px",
-              color: "#000",
-              lineHeight: 1.2,
-            }}
-          >
-            Nigeria
-            <br />
-            Port
-            <br />
-            Authority
-          </Typography>
+          {!collapsed && (
+            <Typography
+              sx={{
+                fontWeight: "700",
+                fontSize: "12px",
+                color: "#000",
+                lineHeight: 1.2,
+              }}
+            >
+              Nigeria
+              <br />
+              Port
+              <br />
+              Authority
+            </Typography>
+          )}
         </Box>
         <Box sx={{ flexGrow: 1 }}>
           {!SIDENAVS ? (
@@ -111,7 +129,10 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
                       : "#fff",
                     borderRadius: "16px",
                     height: "40px",
+                    padding: collapsed ? "0.5rem" : "0 1rem",
+                    transition: "all 0.3s ease-in-out",
                   }}
+                  onClick={() => handleNavShrink(sidenav.path)}
                   to={sidenav.path}
                   key={sidenav.name}
                 >
@@ -121,23 +142,25 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
                       pathname.startsWith(sidenav.path) ? "#01A85A" : "#fff"
                     }
                     style={{
-                      width: "10%",
+                      width: collapsed ? "100%" : "10%",
                       color: pathname.startsWith(sidenav.path)
                         ? "#01A85A"
                         : "#fff",
                     }}
                   />
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      pl: "10px",
-                      color: pathname.startsWith(sidenav.path)
-                        ? "#fff"
-                        : "#000",
-                    }}
-                  >
-                    {sidenav.name}
-                  </Typography>
+                  {!collapsed && (
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        pl: "10px",
+                        color: pathname.startsWith(sidenav.path)
+                          ? "#fff"
+                          : "#000",
+                      }}
+                    >
+                      {sidenav.name}
+                    </Typography>
+                  )}
                 </NavLink>
               ))}
             </Box>
@@ -167,14 +190,16 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
             }}
           >
             <Logout />
-            <Typography
-              variant="body1"
-              display="flex"
-              alignItems="center"
-              fontSize="14px"
-            >
-              Logout
-            </Typography>
+            {!collapsed && (
+              <Typography
+                variant="body1"
+                display="flex"
+                alignItems="center"
+                fontSize="14px"
+              >
+                Logout
+              </Typography>
+            )}
           </Box>
         </Box>
       </Box>

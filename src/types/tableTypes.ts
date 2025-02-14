@@ -5,6 +5,18 @@ export interface column<T> {
   minWidth?: number
 }
 
+type CompanyStatus = "Active" | "Inactive"
+
+export interface Company {
+  companyId: string
+  companyName: string
+  contactPerson: string
+  email: string
+  phone: string
+  address: string
+  status: CompanyStatus
+}
+
 export interface Employee {
   personalNo: string
   name: string

@@ -38,7 +38,7 @@ const Appbar = ({ pathname }: { pathname: string }) => {
           alignItems="center"
           sx={{ mx: 2 }}
         >
-          <Grid item md={4} mt={1}>
+          <Grid item md={5} mt={1}>
             <Box
               sx={{
                 display: "flex",
@@ -62,12 +62,12 @@ const Appbar = ({ pathname }: { pathname: string }) => {
                   (pathname === "/admin/send-memo" && "Send Memo") ||
                   (pathname.startsWith("/admin/manage-staff") &&
                     "Manage Staff") ||
-                  (pathname === "/admin/manage-companies" &&
+                  (pathname.startsWith("/admin/manage-companies") &&
                     "Manage Companies")}
               </Typography>
             </Box>
           </Grid>
-          <Grid item md={8}>
+          <Grid item md={7}>
             <Grid
               container
               spacing={3}

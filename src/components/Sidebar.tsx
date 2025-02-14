@@ -14,7 +14,7 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
   }
 
   return (
-    <Box sx={{ position: "static", width: "20%" }}>
+    <Box sx={{ position: "static", minWidth: "20%" }}>
       <Box
         component="aside"
         sx={{
@@ -106,7 +106,9 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
                     display: "flex",
                     alignItems: "center",
                     marginTop: "0.5rem",
-                    background: pathname === sidenav.path ? "#01A85A" : "#fff",
+                    background: pathname.startsWith(sidenav.path)
+                      ? "#01A85A"
+                      : "#fff",
                     borderRadius: "16px",
                     height: "40px",
                   }}
@@ -114,18 +116,24 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
                   key={sidenav.name}
                 >
                   <sidenav.icon
-                    stroke={pathname === sidenav.path ? "#fff" : "#000"}
-                    fill={pathname === sidenav.path ? "#01A85A" : "#fff"}
+                    stroke={pathname.startsWith(sidenav.path) ? "#fff" : "#000"}
+                    fill={
+                      pathname.startsWith(sidenav.path) ? "#01A85A" : "#fff"
+                    }
                     style={{
                       width: "10%",
-                      color: pathname === sidenav.path ? "#01A85A" : "#fff",
+                      color: pathname.startsWith(sidenav.path)
+                        ? "#01A85A"
+                        : "#fff",
                     }}
                   />
                   <Typography
                     variant="body1"
                     sx={{
                       pl: "10px",
-                      color: pathname === sidenav.path ? "#fff" : "#000",
+                      color: pathname.startsWith(sidenav.path)
+                        ? "#fff"
+                        : "#000",
                     }}
                   >
                     {sidenav.name}

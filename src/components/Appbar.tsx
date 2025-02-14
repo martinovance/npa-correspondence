@@ -1,15 +1,25 @@
 import { NotificationsNone, Search } from "@mui/icons-material"
+import { ReactComponent as ArrowBack } from "@/assets/ArrowBack.svg"
 import {
   AppBar,
   Badge,
+  Box,
   Grid,
+  IconButton,
   InputAdornment,
   InputBase,
   Toolbar,
   Typography,
 } from "@mui/material"
+import { useLocation, useNavigate } from "react-router-dom"
 
 const Appbar = ({ pathname }: { pathname: string }) => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const pathSegments = location.pathname.split("/").filter(Boolean)
+  const isNested = pathSegments.length > 2
+
   return (
     <AppBar
       elevation={0}
@@ -29,18 +39,33 @@ const Appbar = ({ pathname }: { pathname: string }) => {
           sx={{ mx: 2 }}
         >
           <Grid item md={4} mt={1}>
-            <Typography
-              variant="h5"
+            <Box
               sx={{
-                color: "#000",
-                fontWeight: "700",
+                display: "flex",
+                alignItems: "center",
+                gap: 3,
               }}
             >
-              {(pathname === "/admin/dashboard" && "Welcome! Admin.") ||
-                (pathname === "/admin/send-memo" && "Send Memo") ||
-                (pathname === "/admin/manage-staff" && "Manage Staff") ||
-                (pathname === "/admin/manage-companies" && "Manage Companies")}
-            </Typography>
+              {isNested && (
+                <IconButton onClick={() => navigate(-1)}>
+                  <ArrowBack />
+                </IconButton>
+              )}
+              <Typography
+                variant="h5"
+                sx={{
+                  color: "#000",
+                  fontWeight: "700",
+                }}
+              >
+                {(pathname === "/admin/dashboard" && "Welcome! Admin.") ||
+                  (pathname === "/admin/send-memo" && "Send Memo") ||
+                  (pathname.startsWith("/admin/manage-staff") &&
+                    "Manage Staff") ||
+                  (pathname === "/admin/manage-companies" &&
+                    "Manage Companies")}
+              </Typography>
+            </Box>
           </Grid>
           <Grid item md={8}>
             <Grid

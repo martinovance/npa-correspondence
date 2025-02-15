@@ -1,9 +1,21 @@
 import { LocationCity } from "@mui/icons-material"
 import { Button, Paper } from "@mui/material"
-import { Link } from "react-router-dom"
 import AddCompanyForm from "./AddCompanyForm"
+import useModal from "@/hooks/useModal"
+import SuccessModal from "../../Modal/SuccessModal"
 
 const AddCompany = () => {
+  const [modal, setModal] = useModal()
+
+  const openModal = () => {
+    setModal((prev) => ({
+      ...prev,
+      modal,
+      modalName: "successModal",
+      message: "Company added successfully",
+    }))
+  }
+
   return (
     <Paper
       sx={{
@@ -16,23 +28,24 @@ const AddCompany = () => {
       }}
     >
       <AddCompanyForm />
-      <Link to="/admin/manage-companies" style={{ marginLeft: "auto" }}>
-        <Button
-          type="submit"
-          startIcon={<LocationCity />}
-          sx={{
-            height: "48px",
-            borderRadius: "16px",
-            width: "150px",
-            color: "#fff",
-            bgcolor: "#01A85A",
-            textTransform: "capitalize",
-            marginLeft: "auto",
-          }}
-        >
-          Add Company
-        </Button>
-      </Link>
+      <Button
+        type="submit"
+        onClick={openModal}
+        startIcon={<LocationCity />}
+        sx={{
+          height: "48px",
+          borderRadius: "16px",
+          width: "150px",
+          color: "#fff",
+          bgcolor: "#01A85A",
+          textTransform: "capitalize",
+          marginLeft: "auto",
+        }}
+      >
+        Add Company
+      </Button>
+
+      <SuccessModal />
     </Paper>
   )
 }

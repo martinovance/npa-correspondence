@@ -8,15 +8,7 @@ import TableLayout from "@/modules/Admin/Table/DashTable"
 import { Search } from "@mui/icons-material"
 import Footer from "@/components/Footer"
 
-const PATHS_WITH_HIDDEN_SIDEBARS = [
-  "/campaign-manager/war-room",
-  "/campaign-manager/war-room-state",
-  "/situation-room-admin/war-room",
-  "/security-monitoring-admin/war-room",
-  "/situation-room/war-room",
-  "/state-situation-room",
-  "/national-situation-room",
-]
+const PATHS_WITH_HIDDEN_SIDEBARS = [""]
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const location = useLocation()

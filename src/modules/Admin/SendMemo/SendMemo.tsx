@@ -12,6 +12,8 @@ import { ReactComponent as Upload } from "@/assets/Upload.svg"
 import { ReactComponent as Upload2 } from "@/assets/Upload2.svg"
 import PictureAsPdfIcon from "@mui/icons-material/PictureAsPdf"
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown"
+import useModal from "@/hooks/useModal"
+import SuccessModal from "../Modal/SuccessModal"
 
 const options = [
   "npaagmtraining@gmail.com",
@@ -22,10 +24,20 @@ const options = [
 
 function SendMemo() {
   const [file, setFile] = useState<File | null>(null)
+  const [modal, setModal] = useModal()
 
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const uploadedFile = event.target.files?.[0] || null
     setFile(uploadedFile)
+  }
+
+  const openModal = () => {
+    setModal((prev) => ({
+      ...prev,
+      modal,
+      modalName: "successModal",
+      message: "Memo sent successfully",
+    }))
   }
 
   return (
@@ -262,6 +274,7 @@ function SendMemo() {
             type="submit"
             disabled={!file}
             startIcon={<ForwardToInbox />}
+            onClick={openModal}
             sx={{
               height: "48px",
               borderRadius: "16px",
@@ -275,6 +288,8 @@ function SendMemo() {
           </Button>
         </Box>
       </Box>
+
+      <SuccessModal />
     </Paper>
   )
 }

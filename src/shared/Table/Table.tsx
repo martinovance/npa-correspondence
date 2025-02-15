@@ -16,6 +16,7 @@ import { column } from "@/types/tableTypes"
 import { ReactComponent as Inbox } from "@/assets/Inbox.svg"
 import { ReactComponent as Clock } from "@/assets/Clock.svg"
 import { ReactComponent as Delete } from "@/assets/Delete.svg"
+import { useLocation } from "react-router-dom"
 
 interface TableProps<T> {
   results: T[]
@@ -43,6 +44,8 @@ export default function Table<T>({
     page * rowsPerPage,
     page * rowsPerPage + rowsPerPage
   )
+  const location = useLocation()
+  const pathname: string = location.pathname
 
   return (
     <Box sx={{ display: "flex", flexDirection: "column" }}>
@@ -124,7 +127,8 @@ export default function Table<T>({
                           <Delete />
                         </IconButton>
                       </>
-                    ) : column.key === "status" ? (
+                    ) : column.key === "status" &&
+                      pathname === "/admin/manage-companies" ? (
                       <Chip
                         label={row[column.key as keyof T] as string}
                         sx={{

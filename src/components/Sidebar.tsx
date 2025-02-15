@@ -6,10 +6,23 @@ import { NavLink } from "react-router-dom"
 import { ReactComponent as NPALogo2 } from "@/assets/NPALogo2.svg"
 import { ReactComponent as Logout } from "@/assets/Logout.svg"
 import { useState } from "react"
+import useModal from "@/hooks/useModal"
+import LogoutModal from "./Modal/LogoutModal"
 
 const role = "admin"
 
 const Sidebar = ({ pathname }: { pathname: string }) => {
+  const [modal, setModal] = useModal()
+
+  const openModal = () => {
+    setModal((prev) => ({
+      ...prev,
+      modal,
+      modalName: "logoutModal",
+      message: "You are about to logout. Are you sure this is what you want?",
+    }))
+  }
+
   const [collapsed, setCollapsed] = useState<boolean>(() => {
     return localStorage.getItem("sidebarCollapsed") === "true"
   })
@@ -181,12 +194,14 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
         >
           <Divider />
           <Box
+            onClick={openModal}
             sx={{
               mt: 1,
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               gap: "8px",
+              cursor: "pointer",
             }}
           >
             <Logout />
@@ -203,6 +218,8 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
           </Box>
         </Box>
       </Box>
+
+      <LogoutModal />
     </Box>
   )
 }

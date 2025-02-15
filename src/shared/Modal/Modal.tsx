@@ -23,7 +23,7 @@ function Modal({ children, modalName, ...others }: ModalProps) {
           top: "50%",
           left: "50%",
           borderRadius: "19px",
-          width: "30%",
+          maxWidth: "30%",
           "& .MuiBox-root": {
             outline: "none",
             border: "none",

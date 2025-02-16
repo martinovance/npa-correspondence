@@ -1,6 +1,6 @@
 import { Box, Divider, Skeleton, Typography } from "@mui/material"
 
-import { ADMIN_SIDE_NAVS } from "@/constant/sideNav"
+import { ADMIN_SIDE_NAVS, STAFF_SIDE_NAVS } from "@/constant/sideNav"
 import { NavLink } from "react-router-dom"
 
 import { ReactComponent as NPALogo2 } from "@/assets/NPALogo2.svg"
@@ -39,6 +39,7 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
 
   const SIDENAVS = {
     admin: ADMIN_SIDE_NAVS,
+    staff: STAFF_SIDE_NAVS,
   }
 
   return (

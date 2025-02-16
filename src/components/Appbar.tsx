@@ -63,7 +63,11 @@ const Appbar = ({ pathname }: { pathname: string }) => {
                   (pathname.startsWith("/admin/manage-staff") &&
                     "Manage Staff") ||
                   (pathname.startsWith("/admin/manage-companies") &&
-                    "Manage Companies")}
+                    "Manage Companies") ||
+                  (pathname === "/staff/dashboard" && "Welcome! Martins.") ||
+                  (pathname === "/staff/send-memo" && "Send Memo") ||
+                  (pathname.startsWith("/staff/inbox") && "Inbox") ||
+                  (pathname.startsWith("/staff/sent") && "Sent")}
               </Typography>
             </Box>
           </Grid>

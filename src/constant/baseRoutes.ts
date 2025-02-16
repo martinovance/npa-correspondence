@@ -2,7 +2,7 @@ import { ComponentType, lazy, LazyExoticComponent, ReactNode } from "react"
 
 import { Layout as MainLayout } from "@/shared/index"
 import { BasePaths } from "./paths"
-import { ADMIN_SIDE_NAVS } from "./sideNav"
+import { ADMIN_SIDE_NAVS, STAFF_SIDE_NAVS } from "./sideNav"
 import { SideNavItem } from "@/types/sideNavsType"
 
 interface RouteType {
@@ -28,6 +28,14 @@ const BaseRoutes: RouteType[] = [
     Layout: MainLayout,
     useAuth: false,
     sidenavItems: ADMIN_SIDE_NAVS,
+  },
+  {
+    path: `${BasePaths.STAFF}/*`,
+    exact: true,
+    component: lazy(() => import("@/modules/Staff/Routes/index")),
+    Layout: MainLayout,
+    useAuth: false,
+    sidenavItems: STAFF_SIDE_NAVS,
   },
 ]
 

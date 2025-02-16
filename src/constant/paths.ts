@@ -1,15 +1,11 @@
 export const BasePaths = {
   ADMIN: `/admin`,
+  STAFF: `/staff`,
 }
 
 export const AuthPaths = {
   SIGNIN: `sign-in`,
-  SIGNUP: `sign-up`,
   FORGOT_PASSWORD: `forgot-password`,
-  CREATE_PASSWORD: `create-password/`,
-  RESET_PASSWORD: `reset-password`,
-  NEW_USER: `login`,
-  VERIFY_ACCOUNT: `verify-account`,
 }
 
 export const AdminPaths = {
@@ -17,4 +13,11 @@ export const AdminPaths = {
   ADMIN_SEND_MEMO: `/admin/send-memo`,
   ADMIN_MANAGE_STAFF: `/admin/manage-staff`,
   ADMIN_MANAGE_COMPANIES: `/admin/manage-companies`,
+}
+
+export const StaffPaths = {
+  STAFF_DASHBOARD: `/staff/dashboard`,
+  STAFF_SEND_MEMO: `/staff/send-memo`,
+  STAFF_INBOX: `/staff/inbox`,
+  STAFF_SENT: `/staff/sent`,
 }

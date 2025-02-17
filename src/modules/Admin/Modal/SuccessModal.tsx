@@ -14,6 +14,9 @@ function SuccessModal() {
   const handleNavigate = () => {
     if (pathname === "/admin/send-memo") {
       navigate("/admin/dashboard")
+    }
+    if (pathname === "/admin/manage-staff/add-staff") {
+      navigate("/admin/manage-staff")
     } else {
       navigate("/admin/manage-companies")
     }

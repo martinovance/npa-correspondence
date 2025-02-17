@@ -13,7 +13,7 @@ const ManageStaff = () => {
         gap: 3,
       }}
     >
-      <Link to="add-staff">
+      <Link to="add-staff" style={{ width: "150px" }}>
         <Button
           sx={{
             height: "48px",

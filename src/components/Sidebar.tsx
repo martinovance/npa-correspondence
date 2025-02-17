@@ -51,7 +51,7 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
           flexDirection: "column",
           height: "95%",
           background: "#fff",
-          padding: collapsed ? "1rem" : "2.5rem 16px 0 16px",
+          padding: collapsed ? "1rem" : "2.5rem 14px 0 14px",
           justifyContent: "flex-start",
           borderRadius: "24px",
           transition: "all 0.3s ease-in-out",
@@ -62,7 +62,6 @@ const Sidebar = ({ pathname }: { pathname: string }) => {
             display: "flex",
             textDecoration: "none",
             color: "#A7A9BC",
-            // marginBottom: '1em',
             paddingLeft: 2,
             "& .MuiTypography-body1": {
               padding: "10px 10px",

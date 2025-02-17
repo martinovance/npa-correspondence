@@ -13,7 +13,7 @@ const ManageCompanies = () => {
         gap: 3,
       }}
     >
-      <Link to="add-company">
+      <Link to="add-company" style={{ width: "185px" }}>
         <Button
           type="submit"
           startIcon={<LocationCity />}

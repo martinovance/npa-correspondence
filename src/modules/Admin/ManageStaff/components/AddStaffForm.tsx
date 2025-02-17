@@ -56,23 +56,47 @@ function AddStaffForm() {
     >
       <Grid item xs={12} sm={6}>
         <InputLabel>First name</InputLabel>
-        <TextField placeholder="First Name" name="firstName" fullWidth />
+        <TextField
+          placeholder="First Name"
+          name="firstName"
+          autoComplete="off"
+          fullWidth
+          inputProps={{ autoComplete: "new" }}
+        />
       </Grid>
 
       <Grid item xs={12} sm={6}>
         <InputLabel>Last name</InputLabel>
-        <TextField placeholder="Last Name" name="lastName" fullWidth />
+        <TextField
+          placeholder="Last Name"
+          name="lastName_custom"
+          autoComplete="off"
+          fullWidth
+          inputProps={{ autoComplete: "new" }}
+        />
       </Grid>
 
       <Grid item xs={12} sm={6}>
         <InputLabel>Personal no.</InputLabel>
-        <TextField placeholder="Personal No." name="personalNo" fullWidth />
+        <TextField
+          placeholder="Personal No."
+          name="personalNo"
+          autoComplete="off"
+          fullWidth
+          inputProps={{ autoComplete: "new" }}
+        />
       </Grid>
 
       <Grid item xs={12} sm={6}>
         <InputLabel>Email</InputLabel>
 
-        <TextField placeholder="Email" name="email" fullWidth />
+        <TextField
+          placeholder="Email"
+          name="email"
+          autoComplete="off"
+          fullWidth
+          inputProps={{ autoComplete: "new" }}
+        />
       </Grid>
 
       <Grid item xs={12} sm={6}>
@@ -83,6 +107,8 @@ function AddStaffForm() {
           name="password"
           type="password"
           fullWidth
+          autoComplete="off"
+          inputProps={{ autoComplete: "new" }}
           // error={touched.password && !!errors.password}
           // helperText={touched.password && errors.password}
         />
@@ -95,7 +121,9 @@ function AddStaffForm() {
           placeholder="Confirm Password"
           name="confirmPassword"
           type="password"
+          autoComplete="off"
           fullWidth
+          inputProps={{ autoComplete: "new" }}
           // error={touched.confirmPassword && !!errors.confirmPassword}
           // helperText={touched.confirmPassword && errors.confirmPassword}
         />
@@ -173,7 +201,9 @@ function AddStaffForm() {
           // as={TextField}
           placeholder="Address"
           name="address"
+          autoComplete="off"
           fullWidth
+          inputProps={{ autoComplete: "new" }}
         />
       </Grid>
 

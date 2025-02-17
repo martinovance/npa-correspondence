@@ -13,7 +13,7 @@ function Dashboard() {
         gap: 3,
       }}
     >
-      <Link to="/admin/send-memo">
+      <Link to="/admin/send-memo" style={{ width: "150px" }}>
         <Button
           sx={{
             height: "48px",

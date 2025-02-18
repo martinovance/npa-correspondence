@@ -12,13 +12,25 @@ function SuccessModal() {
 
   useEffect(() => {
     if (state.modalName === "successModal") {
-      const closeModal = setTimeout(() => {
-        setState({ ...state, modalName: "" })
-        clearTimeout(closeModal)
-        navigate("/admin/dashboard")
-      }, 4000)
+      let count = 4
+
+      const countdownInterval = setInterval(() => {
+        count -= 1
+        setState((prev) => ({
+          ...prev,
+          redirect: `Redirecting in ${count} seconds...`,
+        }))
+
+        if (count === 0) {
+          clearInterval(countdownInterval)
+          setState((prev) => ({ ...prev, modalName: "" }))
+          navigate("/admin/dashboard")
+        }
+      }, 1000)
+
+      return () => clearInterval(countdownInterval)
     }
-  }, [state, navigate])
+  }, [state.modalName, navigate])
 
   return (
     <Modal modalName="successModal">
@@ -26,7 +38,7 @@ function SuccessModal() {
         sx={{
           position: "relative",
           textAlign: "center",
-          width: "340px",
+          width: "280px",
           height: "100%",
           padding: "2em 1.5em",
           "& .MuiTypography-subtitle1": {

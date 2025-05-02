@@ -41,7 +41,7 @@ function LoginForm({ openModal }: LoginFormProps) {
           name="email"
           placeholder="Enter email..."
           fullWidth
-          autoComplete="off"
+          // autoComplete="off"
           InputProps={{
             style: {
               height: "48px",
@@ -68,7 +68,7 @@ function LoginForm({ openModal }: LoginFormProps) {
           placeholder="Enter password..."
           fullWidth
           type="password"
-          autoComplete="off"
+          // autoComplete="off"
           InputProps={{
             style: {
               height: "48px",

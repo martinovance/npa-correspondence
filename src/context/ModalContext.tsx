@@ -1,6 +1,5 @@
 import React, { useState, createContext, useMemo, ReactNode } from "react"
 
-// Define a proper context type
 interface ModalContextType {
   state: {
     modalName: string
@@ -14,7 +13,6 @@ interface ModalContextType {
   setState: React.Dispatch<React.SetStateAction<ModalContextType["state"]>>
 }
 
-// Create the context with the correct type
 export const ModalContext = createContext<ModalContextType | null>(null)
 
 function ModalContextProvider({ children }: { children: ReactNode }) {

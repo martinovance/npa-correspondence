@@ -32,7 +32,7 @@ function LoginForm({ openModal }: LoginFormProps) {
             fontWeight: "700",
             fontSize: "16px",
             color: "#fff",
-            mb: 2,
+            // mb: 2,
           }}
         >
           Email
@@ -58,7 +58,7 @@ function LoginForm({ openModal }: LoginFormProps) {
             fontWeight: "700",
             fontSize: "16px",
             color: "#fff",
-            mb: 2,
+            // mb: 2,
           }}
         >
           Password
